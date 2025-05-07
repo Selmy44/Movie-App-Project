@@ -7,6 +7,7 @@ import LoginScreen from './screens/LoginScreen';
 import { useDispatch, useSelector } from 'react-redux';
 // import { selectUser } from './features/userSlice';
 import { login, logout, selectUser } from './features/userSlice';
+import ProfileScreen from './screens/ProfileScreen';
 
 
 function App() {
@@ -23,12 +24,12 @@ useEffect(() => {
       }));
     } else {
       // User is logged out
-      dispatch(logout)
+      dispatch(logout())
     }
   });
 
   return unsubscribe;
-}, []);
+}, [dispatch]);
 
   return (
     <div className="app">
@@ -37,6 +38,10 @@ useEffect(() => {
         <LoginScreen />
       ): (
         <Switch>
+          <Route path = '/profile'>
+            <ProfileScreen />
+          </Route>
+
           <Route exact path="/">
             <HomeScreen/>
           </Route>
